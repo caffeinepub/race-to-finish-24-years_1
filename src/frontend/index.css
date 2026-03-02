@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Dark romantic theme — only dark mode */
+    --background: 0.08 0.01 260;
+    --foreground: 0.95 0.01 85;
+    --card: 0.12 0.015 260;
+    --card-foreground: 0.95 0.01 85;
+    --popover: 0.12 0.015 260;
+    --popover-foreground: 0.95 0.01 85;
+    --primary: 0.82 0.18 85;
+    --primary-foreground: 0.08 0.01 260;
+    --secondary: 0.65 0.18 230;
+    --secondary-foreground: 0.95 0.01 85;
+    --muted: 0.18 0.015 260;
+    --muted-foreground: 0.6 0.02 260;
+    --accent: 0.82 0.18 85;
+    --accent-foreground: 0.08 0.01 260;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.25 0.02 260;
+    --input: 0.18 0.015 260;
+    --ring: 0.82 0.18 85;
+    --chart-1: 0.82 0.18 85;
+    --chart-2: 0.65 0.18 230;
+    --chart-3: 0.75 0.12 150;
+    --chart-4: 0.7 0.15 310;
+    --chart-5: 0.55 0.1 20;
+    --sidebar: 0.1 0.012 260;
+    --sidebar-foreground: 0.95 0.01 85;
+    --sidebar-primary: 0.82 0.18 85;
+    --sidebar-primary-foreground: 0.08 0.01 260;
+    --sidebar-accent: 0.18 0.015 260;
+    --sidebar-accent-foreground: 0.95 0.01 85;
+    --sidebar-border: 0.25 0.02 260;
+    --sidebar-ring: 0.82 0.18 85;
+
+    /* Game-specific tokens */
+    --gold: oklch(0.82 0.18 85);
+    --blue-neon: oklch(0.65 0.18 230);
+    --game-bg: #0d0d12;
+    --road-surface: #1a1a22;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "General Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .font-playfair {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  .font-general {
+    font-family: "General Sans", system-ui, sans-serif;
+  }
+
+  .text-gold {
+    color: oklch(0.82 0.18 85);
+  }
+
+  .text-blue-neon {
+    color: oklch(0.65 0.18 230);
+  }
+
+  .glow-gold {
+    text-shadow: 0 0 20px oklch(0.82 0.18 85 / 0.8), 0 0 40px oklch(0.82 0.18 85 / 0.4);
+  }
+
+  .glow-blue {
+    text-shadow: 0 0 20px oklch(0.65 0.18 230 / 0.8), 0 0 40px oklch(0.65 0.18 230 / 0.4);
+  }
+
+  .btn-gold {
+    border: 1px solid oklch(0.82 0.18 85 / 0.7);
+    color: oklch(0.82 0.18 85);
+    background: transparent;
+    box-shadow: 0 0 15px oklch(0.82 0.18 85 / 0.2), inset 0 0 15px oklch(0.82 0.18 85 / 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .btn-gold:hover {
+    background: oklch(0.82 0.18 85 / 0.1);
+    box-shadow: 0 0 25px oklch(0.82 0.18 85 / 0.4), inset 0 0 20px oklch(0.82 0.18 85 / 0.1);
+  }
+
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 15px oklch(0.82 0.18 85 / 0.3), inset 0 0 15px oklch(0.82 0.18 85 / 0.05);
+    }
+    50% {
+      box-shadow: 0 0 35px oklch(0.82 0.18 85 / 0.6), inset 0 0 25px oklch(0.82 0.18 85 / 0.15);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInSlow {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  .fade-in-slow {
+    animation: fadeInSlow 1.5s ease forwards;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .slide-up {
+    animation: slideUp 0.6s ease forwards;
+  }
+}
